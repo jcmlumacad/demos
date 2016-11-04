@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="chatApp">
+<head>
+  <title>
+    ChatApp
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body ng-controller="AppController as app" class="container">
+<div class="form form-inline well">
+  <div>
+    <label>Username: </label>
+    <input type="text" ng-model="app.username" placeholder="Type your username" class="form-control">
+    <button class="btn btn-primary" ng-click="app.login()">Login</button>
+  </div>
+  <div>
+    <label>Connect To: </label>
+    <input type="text" ng-model="app.connectTo" placeholder="Type the username you want to connect" class="form-control">
+    <button class="btn btn-success" ng-click="app.connect()">Establish Connection</button>
+  </div>
+</div>
+<div class="well text-center">
+  <video autoplay></video>
+</div>
+<script src="/angular/angular.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/modules/socket/client.js"></script>
+<script src="/modules/app.module.js"></script>
+<script src="/modules/app.controller.js"></script>
+</body>
+</html>
