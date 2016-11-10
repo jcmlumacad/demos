@@ -11,9 +11,24 @@ module.exports = function(io) {
         });
 
         socket.on("sendOffer", function(result) {
-            socket.to(result.to).emit("receiveOffer", result);
-            console.log("creating offer for", result.to);
+            socket.to(result.friend).emit("receiveOffer", result);
+            console.log("log: offer for", result.friend);
         });
+
+        socket.on("sendAnswer", function(result) {
+            socket.to(result.friend).emit("receiveAnswer", result);
+            console.log("log: answer for", result.friend);
+        });
+
+        socket.on("sendCandidate", function(result) {
+            socket.to(result.friend).emit("sendCandidate", result);
+            console.log("log: candidate for", result.friend);
+        });
+
+        // socket.on("send", function(result) {
+        //     console.log("send called")
+        //     socket.to(result.friend).emit("receive", result);
+        // });
     };
 
     io.on("connection", handleClient);

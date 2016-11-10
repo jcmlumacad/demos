@@ -1,31 +1,56 @@
 <!DOCTYPE html>
-<html ng-app="chatApp">
+<html ng-app="chat">
+
 <head>
   <title>
-    ChatApp
+    Video Chat
   </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #friend {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  </style>
 </head>
+
 <body ng-controller="AppController as app" class="container">
-<div class="form form-inline well">
-  <div>
-    <label>Username: </label>
-    <input type="text" ng-model="app.username" placeholder="Type your username" class="form-control">
-    <button class="btn btn-primary" ng-click="app.login()">Login</button>
+  <div class="form form-inline well">
+    <div>
+      <label>Username: </label>
+      <input type="text" ng-model="app.username" placeholder="Type your username" class="form-control">
+      <button class="btn btn-primary" ng-click="app.login()">Login</button>
+    </div>
+    <div>
+      <label>Connect To: </label>
+      <input type="text" ng-model="app.connectTo" placeholder="Type the username you want to connect" class="form-control">
+      <button class="btn btn-success" ng-click="app.connect()">Establish Connection</button>
+    </div>
   </div>
-  <div>
-    <label>Connect To: </label>
-    <input type="text" ng-model="app.connectTo" placeholder="Type the username you want to connect" class="form-control">
-    <button class="btn btn-success" ng-click="app.connect()">Establish Connection</button>
+  <div class="container-fluid well text-center">
+    <div class="col-md-6 col-sm-6">
+      <video id="user" autoplay></video>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <video id="friend" autoplay></video>
+    </div>
   </div>
-</div>
-<div class="well text-center">
-  <video autoplay></video>
-</div>
-<script src="/angular/angular.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/modules/socket/client.js"></script>
-<script src="/modules/app.module.js"></script>
-<script src="/modules/app.controller.js"></script>
+  <script src="/angular/angular.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+  <script src="/modules/app.module.js"></script>
+  <script src="/modules/app.controller.js"></script>
+  <script src="/modules/app.service.js"></script>
 </body>
+
 </html>
